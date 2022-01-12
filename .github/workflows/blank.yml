@@ -11,3 +11,4 @@ jobs:
       - name: Run a multi-line script
         run: |
           echo "password is 12345"
+          echo "password is ${{ secrets.SIGNING_KEY }}"
