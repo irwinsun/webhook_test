@@ -9,9 +9,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run a multi-line script
-        env:
-          SK: ${{ secrets.SIGNING_KEY }}
         run: |
           echo "password is 12345"
-          echo "password is ${SK}"
-          echo "password is ${{ secrets.SIGNING_KEY }}"
