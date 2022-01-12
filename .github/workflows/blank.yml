@@ -9,15 +9,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "论secrets会对明文猜中的密码进行日志屏蔽"
-      # secrets.SIGNING_KEY 的值12345
-      # secrets.SIGNING_KEY_ID 的值54321
         run: |
-          echo "password is 12345"
-          echo "password is 54321"  
-          echo "password is ${{ secrets.SIGNING_KEY }}"
-      - name: "论没有secrets不会对明文猜中的密码进行日志屏蔽？"
-      # secrets.SIGNING_KEY 的值12345
-      # secrets.SIGNING_KEY_ID 的值54321
+          echo "secrets.SIGNING_KEY is 12345"
+          echo "当没有引用secrets.SIGNING_KE_IDY时，secrets.SIGNING_KEY_ID is 54321"  
+          echo "当引用了secrets.SIGNING_KEY时， secrets.SIGNING_KEY is ${{ secrets.SIGNING_KEY }}"
+      - name: "引用了secrets是对流水线本次构建的全局进行日志屏蔽？"
+     
         run: |
-          echo "password is 12345"
-          echo "password is 54321"  
+          echo "secrets.SIGNING_KEY is 12345"
+          echo "secrets.SIGNING_KEY_ID is 54321"  
