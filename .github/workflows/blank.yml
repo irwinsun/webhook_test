@@ -31,7 +31,7 @@ jobs:
     steps:
       - name: "并行是否会屏蔽 12345"
         run: |
-          echo "直接其他Job输出的内容"
+
           echo "v1=${{jobs.build.steps.s1.outputs.v1}}"
           echo "v2=${{jobs.build.steps.s1.outputs.v2}}"
           echo "v3=${{jobs.build.steps.s1.outputs.v3}}"
