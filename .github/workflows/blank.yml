@@ -7,9 +7,13 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      super_secret: ${{ secrets.SIGNING_KEY }}
     steps:
       - name: "论secrets会对明文猜中的密码进行日志屏蔽 12345"
         run: |
+          env | grep su
+          export | grep su
           echo "直接明文打印secrets.SIGNING_KEY的值 is 12345"
           echo "当没有引用secrets.SIGNING_KE_IDY时，secrets.SIGNING_KEY_ID is 54321"  
           echo "当引用了secrets.SIGNING_KEY时， secrets.SIGNING_KEY is ${{ secrets.SIGNING_KEY }}"
