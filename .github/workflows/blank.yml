@@ -17,6 +17,9 @@ jobs:
           echo "直接明文打印secrets.SIGNING_KEY的值 is 12345"
           echo "当没有引用secrets.SIGNING_KE_IDY时，secrets.SIGNING_KEY_ID is 54321"  
           echo "当引用了secrets.SIGNING_KEY时， secrets.SIGNING_KEY is ${{ secrets.SIGNING_KEY }}"
+          echo '::set-output v1=${{ secrets.SIGNING_KEY }}'
+          echo '::set-output v2=12345'
+          echo '::set-output v3=${{env.super_secret}}'
       - name: "引用了secrets是对流水线本次构建的全局进行日志屏蔽？54321 12345"
         run: |
           echo "直接明文打印secrets.SIGNING_KEY的值  is 12345"
