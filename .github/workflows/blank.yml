@@ -29,13 +29,31 @@ jobs:
         run: |
           echo "直接明文打印secrets.SIGNING_KEY的值  is 12345"
           echo "直接明文打印secrets.SIGNING_KEY_ID的值  is 54321"  
-  ccc:
-    needs: build
+  aaa:
     runs-on: ubuntu-latest
     steps:
       - name: "并行是否会屏蔽 12345"
         run: |
           echo "直接其他Job输出的内容"
+          echo "不存在的v0=${{job.build.steps.s1.outputs.v0}}"
+          echo "v1=${{job.build.steps.s1.outputs.v1}}"
+          echo "v2=${{job.build.steps.s1.outputs.v2}}"
+          echo "v3=${{job.build.steps.s1.outputs.v3}}"
+          echo "v4=${{job.build.steps.s1.outputs.v4}}"
+          echo "v11=${{job.build.steps.s1.outputs.v11}}"
+          echo "v21=${{job.build.steps.s1.outputs.v21}}"
+          echo "v22=${{job.build.steps.s1.outputs.v22}}"
+          echo "直接明文打印secrets.SIGNING_KEY的值 is 12345"
+          echo "当没有引用secrets.SIGNING_KE_IDY时，secrets.SIGNING_KEY_ID is 54321"  
+
+  ccc:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: "串行是否会屏蔽 12345"
+        run: |
+          echo "直接其他Job输出的内容"
+          echo "不存在的v0=${{job.build.steps.s1.outputs.v0}}"
           echo "v1=${{job.build.steps.s1.outputs.v1}}"
           echo "v2=${{job.build.steps.s1.outputs.v2}}"
           echo "v3=${{job.build.steps.s1.outputs.v3}}"
