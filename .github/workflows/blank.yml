@@ -19,8 +19,12 @@ jobs:
           echo "当没有引用secrets.SIGNING_KE_IDY时，secrets.SIGNING_KEY_ID is 54321"  
           echo "当引用了secrets.SIGNING_KEY时， secrets.SIGNING_KEY is ${{ secrets.SIGNING_KEY }}"
           echo '::set-output v1=${{ secrets.SIGNING_KEY }}'
+          echo '::set-output v11=11${{ secrets.SIGNING_KEY }}'
           echo '::set-output v2=12345'
           echo '::set-output v3=${{env.super_secret}}'
+          echo '::set-output v4=123${{env.super_secret}}'
+          echo '::set-output v21=123456'
+          echo '::set-output v22=1123456'
       - name: "引用了secrets是对流水线本次构建的全局进行日志屏蔽？54321 12345"
         run: |
           echo "直接明文打印secrets.SIGNING_KEY的值  is 12345"
@@ -35,6 +39,10 @@ jobs:
           echo "v1=${{job.build.steps.s1.outputs.v1}}"
           echo "v2=${{job.build.steps.s1.outputs.v2}}"
           echo "v3=${{job.build.steps.s1.outputs.v3}}"
+          echo "v4=${{job.build.steps.s1.outputs.v4}}"
+          echo "v11=${{job.build.steps.s1.outputs.v11}}"
+          echo "v21=${{job.build.steps.s1.outputs.v21}}"
+          echo "v22=${{job.build.steps.s1.outputs.v22}}"
           echo "直接明文打印secrets.SIGNING_KEY的值 is 12345"
           echo "当没有引用secrets.SIGNING_KE_IDY时，secrets.SIGNING_KEY_ID is 54321"  
 
