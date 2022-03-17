@@ -11,6 +11,7 @@ jobs:
       super_secret: ${{ secrets.SIGNING_KEY }}
     steps:
       - name: "论secrets会对明文猜中的密码进行日志屏蔽 12345"
+        id: s1
         run: |
           env | grep super_secret
           export | grep super_secret
@@ -30,6 +31,10 @@ jobs:
     steps:
       - name: "并行是否会屏蔽 12345"
         run: |
+          echo "直接其他Job输出的内容"
+          echo "v1=${{jobs.build.steps.s1.outputs.v1}}"
+          echo "v2=${{jobs.build.steps.s1.outputs.v2}}"
+          echo "v3=${{jobs.build.steps.s1.outputs.v3}}"
           echo "直接明文打印secrets.SIGNING_KEY的值 is 12345"
           echo "当没有引用secrets.SIGNING_KE_IDY时，secrets.SIGNING_KEY_ID is 54321"  
 
