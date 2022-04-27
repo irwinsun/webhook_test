@@ -33,6 +33,10 @@ jobs:
         run: |
           echo "直接明文打印secrets.SIGNING_KEY的值  is 12345"
           echo "直接明文打印secrets.SIGNING_KEY_ID的值  is 54321"  
+      - uses: actions/upload-artifact@v1
+        with:
+          name: sec.txt
+          path: bin/
   aaa:
     runs-on: ubuntu-latest
     steps:
