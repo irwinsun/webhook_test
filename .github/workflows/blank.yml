@@ -11,6 +11,7 @@ jobs:
       super_secret: ${{ secrets.SIGNING_KEY }}
       secc: ${{ secrets.SIGNING_KEY }}
     steps:
+      - uses: actions/checkout@v2
       - name: "论secrets会对明文猜中的密码进行日志屏蔽 12345"
         id: s1
         run: |
@@ -35,6 +36,7 @@ jobs:
   aaa:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: "并行是否会屏蔽 12345"
         run: |
           echo "直接其他Job输出的内容"
@@ -53,6 +55,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - name: "串行是否会屏蔽 12345"
         run: |
           echo "直接其他Job输出的内容"
