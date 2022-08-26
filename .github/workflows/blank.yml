@@ -15,7 +15,7 @@ jobs:
       - name: "论secrets会对明文猜中的密码进行日志屏蔽 12345"
         id: s1
         run: |
-          echo "${{ env.abc }} 3}"
+          echo "${{ env.abc }} 3}}"
           echo ${{ fromJSON('{"a": 1 }') }}
           cat hello.sh
           sh hello.sh
