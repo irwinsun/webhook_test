@@ -3,18 +3,21 @@ name: CI
 on:
   push:
     branches: [ master ]
-
 jobs:
   build:
     runs-on: ubuntu-latest
     env:
       super_secret: ${{ secrets.SIGNING_KEY }}
       secc: ${{ secrets.SIGNING_KEY }}
+      abc: "aaa"
     steps:
       - uses: actions/checkout@v2
       - name: "论secrets会对明文猜中的密码进行日志屏蔽 12345"
         id: s1
         run: |
+          echo "${{ envs.abc }}}"
+          echo "${{ envs.abc } }}"
+          echo "${{ envs.abc} }}"
           echo ${{ fromJSON('{"a": 1 }') }}
           cat hello.sh
           sh hello.sh
