@@ -16,8 +16,6 @@ jobs:
         id: s1
         run: |
           echo "${{ env.abc }} 3}"
-          echo "${{ env.abc } }}"
-          echo "${{ env.abc} }}"
           echo ${{ fromJSON('{"a": 1 }') }}
           cat hello.sh
           sh hello.sh
