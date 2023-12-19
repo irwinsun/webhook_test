@@ -1,7 +1,5 @@
 #!/bin/bash
-
-export 
-
+export
 echo "secc=$secc"
 mkdir -p bin
 echo "secc=$secc" > bin/sec.txt
