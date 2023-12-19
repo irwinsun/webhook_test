@@ -5,7 +5,7 @@ on:
     branches: [ master ]
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     env:
       super_secret: ${{ secrets.SIGNING_KEY }}
       secc: ${{ secrets.SIGNING_KEY }}
